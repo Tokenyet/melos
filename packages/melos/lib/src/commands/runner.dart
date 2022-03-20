@@ -12,6 +12,7 @@ import 'package:path/path.dart';
 import 'package:pool/pool.dart';
 import 'package:pub_semver/pub_semver.dart';
 import 'package:pubspec/pubspec.dart';
+import 'package:path/path.dart' as p;
 
 import '../command_runner/version.dart';
 import '../common/exception.dart';

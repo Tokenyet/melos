@@ -27,8 +27,15 @@ mixin _CleanMixin on _Melos {
 
   void cleanWorkspace(MelosWorkspace workspace) {
     if (Directory(workspace.melosToolPath).existsSync()) {
-      Directory(workspace.melosToolPath).deleteSync(recursive: true);
+      // Directory(workspace.melosToolPath).deleteSync(recursive: true);
+      deleteDirectory(workspace.melosToolPath);
     }
+  }
+
+  Future<void> deleteDirectory(String path) async {
+    final isAbsolute = p.isAbsolute(path);
+    final prefix = Platform.isWindows && isAbsolute ? r'\\?\' : '';
+    await Directory(prefix + path).delete(recursive: true);
   }
 
   void _cleanPackage(Package package) {
